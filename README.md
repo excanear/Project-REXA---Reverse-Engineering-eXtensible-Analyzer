@@ -4,84 +4,84 @@
 
 ### Reverse Engineering eXtensible Analyzer
 
-*A modern, high-performance reverse engineering framework built in Rust*
+*Framework moderno de engenharia reversa de alta performance construído em Rust*
 
-[![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](#license)
-[![Rust Version](https://img.shields.io/badge/rust-1.75+-orange.svg)](https://www.rust-lang.org)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
+[![Licença](https://img.shields.io/badge/licença-MIT%2FApache--2.0-blue.svg)](#licença)
+[![Versão Rust](https://img.shields.io/badge/rust-1.75+-orange.svg)](https://www.rust-lang.org)
+[![Status Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
+[![PRs Bem-vindos](https://img.shields.io/badge/PRs-bem--vindos-brightgreen.svg)](#contribuindo)
 
-[Features](#-features) • [Quick Start](#-quick-start) • [Architecture](#-architecture) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Recursos](#-recursos) • [Início Rápido](#-início-rápido) • [Arquitetura](#-arquitetura) • [Documentação](#-documentação) • [Contribuindo](#-contribuindo)
 
 </div>
 
 ---
 
-## 📖 Overview
+## 📖 Visão Geral
 
-**REXA** is a next-generation reverse engineering framework designed for speed, extensibility, and advanced analysis. Built entirely in Rust, REXA combines modern software engineering practices with cutting-edge binary analysis techniques to provide a powerful platform for security researchers, malware analysts, and reverse engineers.
+**REXA** é um framework de engenharia reversa de próxima geração projetado para velocidade, extensibilidade e análise avançada. Construído inteiramente em Rust, o REXA combina práticas modernas de engenharia de software com técnicas de análise binária de ponta para fornecer uma plataforma poderosa para pesquisadores de segurança, analistas de malware e engenheiros reversos.
 
-### Why REXA?
+### Por que REXA?
 
-- **🚀 Blazing Fast**: Rust-powered performance with zero-cost abstractions
-- **🧠 AI-Powered**: Native integration with LLMs for intelligent code analysis
-- **🔌 Highly Extensible**: Rich plugin system supporting Rust, Python, and Lua
-- **🔬 Advanced Decompilation**: SSA-based decompiler with aggressive optimizations
-- **🛡️ Security-Focused**: Built-in vulnerability detection and symbolic execution
-- **🎯 Modular Architecture**: 19 specialized crates for maximum flexibility
+- **🚀 Extremamente Rápido**: Performance impulsionada pelo Rust com abstrações de custo zero
+- **🧠 Potencializado por IA**: Integração nativa com LLMs para análise inteligente de código
+- **🔌 Altamente Extensível**: Sistema rico de plugins suportando Rust, Python e Lua
+- **🔬 Descompilação Avançada**: Descompilador baseado em SSA com otimizações agressivas
+- **🛡️ Foco em Segurança**: Detecção de vulnerabilidades e execução simbólica integradas
+- **🎯 Arquitetura Modular**: 19 crates especializados para máxima flexibilidade
 
 ---
 
-## ✨ Features
+## ✨ Recursos
 
-### Core Capabilities
+### Capacidades Principais
 
-#### 🔬 Advanced Decompiler
+#### 🔬 Descompilador Avançado
 
-- **Complete Pipeline**: Assembly → IR → SSA → Optimizations → Structuring → C Code
-- **140+ x86/x64 Instructions**: MOV, arithmetic, SIMD (SSE/AVX), FPU, string operations
-- **6 Optimization Passes**: 
-  - Dead Code Elimination (DCE)
-  - Constant Folding & Propagation
-  - Copy Propagation
-  - Common Subexpression Elimination (CSE)
-  - Algebraic Simplification
-  - Strength Reduction
-- **Control Flow Recovery**: Automatic detection of if/else, loops, and switch statements using the Cifuentes algorithm
-- **Clean Code Generation**: Produces readable C code with proper precedence, minimal casts, and helpful comments
+- **Pipeline Completo**: Assembly → IR → SSA → Otimizações → Estruturação → Código C
+- **140+ Instruções x86/x64**: MOV, aritmética, SIMD (SSE/AVX), FPU, operações de string
+- **6 Passes de Otimização**: 
+  - Eliminação de Código Morto (DCE)
+  - Dobramento e Propagação de Constantes
+  - Propagação de Cópia
+  - Eliminação de Subexpressões Comuns (CSE)
+  - Simplificação Algébrica
+  - Redução de Força
+- **Recuperação de Fluxo de Controle**: Detecção automática de if/else, loops e switch statements usando o algoritmo de Cifuentes
+- **Geração de Código Limpo**: Produz código C legível com precedência adequada, casts mínimos e comentários úteis
 
-#### 🧠 AI Integration
+#### 🧠 Integração com IA
 
-Leverage the power of AI for intelligent binary analysis:
+Aproveite o poder da IA para análise inteligente de binários:
 
-- **Function Explanation**: Automatic summarization of what functions do
-- **Smart Renaming**: Intelligent variable and function name suggestions
-- **Vulnerability Detection**: AI-powered identification of potential security issues
-- **Code Similarity**: Semantic search across codebases
-- **Type Inference**: ML-assisted type recovery
-- **Multi-Provider Support**: OpenAI, Anthropic, and local models
+- **Explicação de Funções**: Resumo automático do que as funções fazem
+- **Renomeação Inteligente**: Sugestões inteligentes de nomes de variáveis e funções
+- **Detecção de Vulnerabilidades**: Identificação de possíveis problemas de segurança com IA
+- **Similaridade de Código**: Busca semântica em bases de código
+- **Inferência de Tipos**: Recuperação de tipos assistida por ML
+- **Suporte Multi-Provedor**: OpenAI, Anthropic e modelos locais
 
-#### 🛡️ Security Analysis
+#### 🛡️ Análise de Segurança
 
-Comprehensive security analysis capabilities:
+Capacidades abrangentes de análise de segurança:
 
-- **Vulnerability Scanner**: 
-  - Buffer overflows and underflows
-  - Use-after-free and double-free
-  - Format string vulnerabilities
+- **Scanner de Vulnerabilidades**: 
+  - Buffer overflows e underflows
+  - Use-after-free e double-free
+  - Vulnerabilidades de format string
   - Integer overflow/underflow
-  - Null pointer dereferences
+  - Desreferências de ponteiro nulo
   - Race conditions
-- **CVE Database**: Pattern matching against known vulnerabilities
-- **Symbolic Execution**: Z3-powered constraint solving for automatic vulnerability discovery
-- **Taint Analysis**: Track untrusted input through execution paths
-- **Path Exploration**: BFS/DFS strategies with coverage-guided exploration
+- **Banco de Dados CVE**: Pattern matching contra vulnerabilidades conhecidas
+- **Execução Simbólica**: Resolução de restrições com Z3 para descoberta automática de vulnerabilidades
+- **Análise de Taint**: Rastreamento de entrada não confiável através de caminhos de execução
+- **Exploração de Caminhos**: Estratégias BFS/DFS com exploração guiada por cobertura
 
-#### 🔌 Plugin System
+#### 🔌 Sistema de Plugins
 
-Powerful, multi-language plugin architecture:
+Arquitetura de plugins poderosa e multi-linguagem:
 
-**Rust Plugins** - Maximum performance:
+**Plugins Rust** - Performance máxima:
 ```rust
 use rexa_plugin::prelude::*;
 
@@ -91,298 +91,298 @@ pub struct CryptoScanner;
 impl Plugin for CryptoScanner {
     fn on_function_analyzed(&mut self, func: &Function) {
         if func.contains_constant(0x67452301) {
-            self.report("MD5 constant detected");
+            self.report("Constante MD5 detectada");
         }
     }
 }
 ```
 
-**Python Plugins** - Rapid prototyping:
+**Plugins Python** - Prototipagem rápida:
 ```python
 from rexa import Plugin
 
-class MyAnalyzer(Plugin):
+class MeuAnalisador(Plugin):
     def on_function_analyzed(self, func):
         if "crypto" in func.name.lower():
-            self.log(f"Crypto function found: {func.name}")
+            self.log(f"Função cripto encontrada: {func.name}")
 ```
 
-**Lua Plugins** - Lightweight scripting:
+**Plugins Lua** - Scripts leves:
 ```lua
 function on_function_analyzed(func)
     if string.match(func.name, "^crypt") then
-        log("Found encryption function")
+        log("Função de criptografia encontrada")
     end
 end
 ```
 
-Features:
-- **Hot-Reload**: Develop plugins without restarting
-- **Rich API**: 200+ functions for analysis, GUI, and emulation
-- **Event-Driven**: 9 event types with structured data
-- **Thread-Safe**: Concurrent plugin execution
+Recursos:
+- **Hot-Reload**: Desenvolva plugins sem reiniciar
+- **API Rica**: 200+ funções para análise, GUI e emulação
+- **Orientado a Eventos**: 9 tipos de eventos com dados estruturados
+- **Thread-Safe**: Execução concorrente de plugins
 
-#### 📦 Binary Format Support
+#### 📦 Suporte a Formatos Binários
 
-- **PE** (Windows executables, DLLs, drivers)
-- **ELF** (Linux binaries, shared libraries)
-- **Mach-O** (macOS executables, frameworks)
-- **Raw Binary** (firmware, bootloaders)
+- **PE** (executáveis Windows, DLLs, drivers)
+- **ELF** (binários Linux, bibliotecas compartilhadas)
+- **Mach-O** (executáveis macOS, frameworks)
+- **Binário Raw** (firmware, bootloaders)
 
-#### 🖥️ Architecture Support
+#### 🖥️ Suporte a Arquiteturas
 
-- **x86** (32-bit Intel/AMD)
-- **x86-64** (64-bit Intel/AMD)
+- **x86** (Intel/AMD 32-bit)
+- **x86-64** (Intel/AMD 64-bit)
 - **ARM** / **ARM64** (AArch64)
-- **MIPS** (planned)
-- **RISC-V** (planned)
+- **MIPS** (planejado)
+- **RISC-V** (planejado)
 
-#### 🔍 Additional Analysis Tools
+#### 🔍 Ferramentas de Análise Adicionais
 
-- **Binary Diffing**: Function-level comparison, patch detection, and security impact assessment
-- **Type Inference**: Advanced type propagation and structure recovery
-- **Signature System**: FLIRT-compatible signatures, YARA rules, library identification
-- **Emulator**: Dynamic analysis with CPU emulation and syscall interception
+- **Diff Binário**: Comparação em nível de função, detecção de patches e avaliação de impacto de segurança
+- **Inferência de Tipos**: Propagação avançada de tipos e recuperação de estruturas
+- **Sistema de Assinaturas**: Assinaturas compatíveis com FLIRT, regras YARA, identificação de bibliotecas
+- **Emulador**: Análise dinâmica com emulação de CPU e interceptação de syscalls
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Início Rápido
 
-### Prerequisites
+### Pré-requisitos
 
-- **Rust** 1.75 or higher ([Install Rust](https://rustup.rs/))
+- **Rust** 1.75 ou superior ([Instalar Rust](https://rustup.rs/))
 - **Git**
 
-### Installation
+### Instalação
 
 ```bash
-# Clone the repository
+# Clone o repositório
 git clone https://github.com/rexa-re/rexa.git
 cd rexa
 
-# Build the project (release mode for best performance)
+# Compile o projeto (modo release para melhor performance)
 cargo build --release
 
-# Run tests to verify installation
+# Execute os testes para verificar a instalação
 cargo test --all
 
-# Install the CLI tool globally
+# Instale a ferramenta CLI globalmente
 cargo install --path crates/rexa-cli
 ```
 
-### Basic Usage
+### Uso Básico
 
 ```bash
-# Analyze a binary
+# Analise um binário
 rexa analyze binary.exe
 
-# Decompile a specific function
+# Descompile uma função específica
 rexa decompile --address 0x401000 binary.exe
 
-# Launch the GUI
+# Inicie a GUI
 rexa gui binary.exe
 
-# Run with a plugin
+# Execute com um plugin
 rexa analyze --plugin crypto-scanner binary.exe
 
-# Export analysis results
+# Exporte resultados da análise
 rexa export --format json binary.exe > analysis.json
 ```
 
-### GUI Mode
+### Modo GUI
 
-The GUI provides an intuitive interface for binary analysis:
+A GUI fornece uma interface intuitiva para análise de binários:
 
 ```bash
-rexa gui /path/to/binary
+rexa gui /caminho/para/binario
 ```
 
-Features:
-- Interactive disassembly view
-- Function list and call graphs
-- Hex editor
-- Decompiler output
-- Plugin management
+Recursos:
+- Visualização interativa de disassembly
+- Lista de funções e grafos de chamadas
+- Editor hexadecimal
+- Saída do descompilador
+- Gerenciamento de plugins
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Arquitetura
 
-REXA is organized into 19 specialized crates, each handling a specific aspect of binary analysis:
+O REXA é organizado em 19 crates especializados, cada um lidando com um aspecto específico da análise binária:
 
 ```
 rexa/
-├── rexa-core          # Core data structures, traits, and interfaces
-├── rexa-loader        # Binary file format parsing (PE, ELF, Mach-O)
-├── rexa-disasm        # Disassembly engine (Capstone wrapper)
-├── rexa-ir            # Intermediate representation (IR)
-├── rexa-decompiler    # High-level decompilation pipeline
-├── rexa-analysis      # Static analysis passes and algorithms
-├── rexa-ai            # AI/LLM integration layer
-├── rexa-plugins       # Plugin system and API
-├── rexa-cli           # Command-line interface
-├── rexa-gui           # Graphical interface (egui)
-├── rexa-api           # REST API server for remote access
-├── rexa-emulator      # CPU emulation for dynamic analysis
-├── rexa-vuln          # Vulnerability detection engine
-├── rexa-diff          # Binary diffing algorithms
-├── rexa-types         # Type system and inference
-├── rexa-signatures    # Pattern matching and signatures
-├── rexa-symbolic      # Symbolic execution engine
-├── rexa-utils         # Common utilities and helpers
-└── rexa-filesystem    # Virtual filesystem abstraction
+├── rexa-core          # Estruturas de dados, traits e interfaces principais
+├── rexa-loader        # Parsing de formatos de arquivo binário (PE, ELF, Mach-O)
+├── rexa-disasm        # Motor de disassembly (wrapper do Capstone)
+├── rexa-ir            # Representação intermediária (IR)
+├── rexa-decompiler    # Pipeline de descompilação de alto nível
+├── rexa-analysis      # Passes de análise estática e algoritmos
+├── rexa-ai            # Camada de integração com IA/LLM
+├── rexa-plugins       # Sistema de plugins e API
+├── rexa-cli           # Interface de linha de comando
+├── rexa-gui           # Interface gráfica (egui)
+├── rexa-api           # Servidor API REST para acesso remoto
+├── rexa-emulator      # Emulação de CPU para análise dinâmica
+├── rexa-vuln          # Motor de detecção de vulnerabilidades
+├── rexa-diff          # Algoritmos de diff binário
+├── rexa-types         # Sistema de tipos e inferência
+├── rexa-signatures    # Pattern matching e assinaturas
+├── rexa-symbolic      # Motor de execução simbólica
+├── rexa-utils         # Utilitários e helpers comuns
+└── rexa-filesystem    # Abstração de sistema de arquivos virtual
 ```
 
-Each crate is:
-- **Independently testable**
-- **Usable as a standalone library**
-- **Well-documented with examples**
-- **Following Rust best practices**
+Cada crate é:
+- **Testável independentemente**
+- **Utilizável como biblioteca standalone**
+- **Bem documentado com exemplos**
+- **Seguindo as melhores práticas do Rust**
 
-### Data Flow
+### Fluxo de Dados
 
 ```
-Binary File → Loader → Disassembler → IR → Decompiler → High-Level Code
-                ↓          ↓          ↓        ↓
-            Analysis ← Plugins ← AI ← Types
+Arquivo Binário → Loader → Disassembler → IR → Decompiler → Código de Alto Nível
+                    ↓          ↓           ↓        ↓
+                Analysis ← Plugins ← AI ← Types
 ```
 
 ---
 
-## 📚 Documentation
+## 📚 Documentação
 
-- **[Roadmap](docs/ROADMAP_VISUAL.md)** - Project roadmap and milestones
-- **[API Reference](https://docs.rs/rexa)** - Complete API documentation
-- **[Plugin Development Guide](docs/plugins.md)** - Create your own plugins
-- **[Architecture Deep Dive](docs/architecture.md)** - Internal system design
-- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
+- **[Roadmap](docs/ROADMAP_VISUAL.md)** - Roadmap do projeto e marcos
+- **[Referência da API](https://docs.rs/rexa)** - Documentação completa da API
+- **[Guia de Desenvolvimento de Plugins](docs/plugins.md)** - Crie seus próprios plugins
+- **[Arquitetura Detalhada](docs/architecture.md)** - Design interno do sistema
+- **[Guia de Contribuição](CONTRIBUTING.md)** - Como contribuir
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contribuindo
 
-We welcome contributions from the community! Whether you're fixing bugs, adding features, improving documentation, or creating plugins, your help is appreciated.
+Agradecemos contribuições da comunidade! Seja corrigindo bugs, adicionando recursos, melhorando documentação ou criando plugins, sua ajuda é apreciada.
 
-### Ways to Contribute
+### Formas de Contribuir
 
-- 🐛 **Report Bugs**: Open an issue with detailed reproduction steps
-- ✨ **Request Features**: Propose new features through GitHub issues
-- 📖 **Improve Documentation**: Help us make docs clearer and more comprehensive
-- 🧪 **Write Tests**: Increase code coverage and reliability
-- 🔌 **Create Plugins**: Share your analysis tools with the community
-- 💻 **Submit Code**: Fix bugs or implement new features
+- 🐛 **Reportar Bugs**: Abra uma issue com passos detalhados de reprodução
+- ✨ **Solicitar Recursos**: Proponha novos recursos através de issues no GitHub
+- 📖 **Melhorar Documentação**: Ajude-nos a tornar a documentação mais clara e abrangente
+- 🧪 **Escrever Testes**: Aumente a cobertura de código e confiabilidade
+- 🔌 **Criar Plugins**: Compartilhe suas ferramentas de análise com a comunidade
+- 💻 **Submeter Código**: Corrija bugs ou implemente novos recursos
 
-### Development Setup
+### Configuração de Desenvolvimento
 
 ```bash
-# Fork the repository on GitHub, then:
-git clone https://github.com/YOUR_USERNAME/rexa.git
+# Faça fork do repositório no GitHub, então:
+git clone https://github.com/SEU_USUARIO/rexa.git
 cd rexa
 
-# Create a feature branch
-git checkout -b feature/my-awesome-feature
+# Crie um branch de feature
+git checkout -b feature/meu-recurso-incrivel
 
-# Make your changes and test
+# Faça suas mudanças e teste
 cargo test --all
 cargo clippy --all-targets --all-features
 cargo fmt --all
 
-# Commit and push
-git commit -am "Add my awesome feature"
-git push origin feature/my-awesome-feature
+# Commit e push
+git commit -am "Adiciona meu recurso incrível"
+git push origin feature/meu-recurso-incrivel
 ```
 
-Then open a Pull Request on GitHub with a clear description of your changes.
+Então abra um Pull Request no GitHub com uma descrição clara de suas mudanças.
 
-### Code Standards
+### Padrões de Código
 
-- Follow Rust idioms and best practices
-- Write tests for new functionality
-- Document public APIs with doc comments
-- Run `cargo fmt` and `cargo clippy` before committing
-- Keep commits focused and atomic
+- Siga os idiomas e melhores práticas do Rust
+- Escreva testes para novas funcionalidades
+- Documente APIs públicas com doc comments
+- Execute `cargo fmt` e `cargo clippy` antes de commitar
+- Mantenha commits focados e atômicos
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+Veja [CONTRIBUTING.md](CONTRIBUTING.md) para diretrizes detalhadas.
 
 ---
 
 ## 🛣️ Roadmap
 
-### Short Term (Q1 2026)
+### Curto Prazo (Q1 2026)
 
-- [ ] Complete type inference system
-- [ ] Expand architecture support (ARM64 improvements)
-- [ ] Enhanced GUI features
-- [ ] 70%+ test coverage
-- [ ] Comprehensive documentation
+- [ ] Sistema completo de inferência de tipos
+- [ ] Expandir suporte a arquiteturas (melhorias ARM64)
+- [ ] Recursos aprimorados da GUI
+- [ ] Cobertura de testes >70%
+- [ ] Documentação abrangente
 
-### Medium Term (Q2-Q3 2026)
+### Médio Prazo (Q2-Q3 2026)
 
-- [ ] Production-ready AI features
-- [ ] Advanced vulnerability scanner
-- [ ] Binary diffing improvements
-- [ ] Performance optimizations
-- [ ] Plugin marketplace
+- [ ] Recursos de IA prontos para produção
+- [ ] Scanner avançado de vulnerabilidades
+- [ ] Melhorias no diff binário
+- [ ] Otimizações de performance
+- [ ] Marketplace de plugins
 
-### Long Term (Q4 2026+)
+### Longo Prazo (Q4 2026+)
 
-- [ ] Cloud-based distributed analysis
-- [ ] Real-time collaboration features
-- [ ] Enterprise features (SSO, audit logs)
-- [ ] Mobile architecture support
-- [ ] Advanced emulation capabilities
+- [ ] Análise distribuída baseada em nuvem
+- [ ] Recursos de colaboração em tempo real
+- [ ] Recursos empresariais (SSO, logs de auditoria)
+- [ ] Suporte a arquiteturas mobile
+- [ ] Capacidades avançadas de emulação
 
-See [docs/ROADMAP_VISUAL.md](docs/ROADMAP_VISUAL.md) for the complete roadmap.
-
----
-
-## 📊 Project Status
-
-REXA is in active development. Key components are functional, with continuous improvements being made.
-
-**Current Focus**: Stability, testing, and documentation
-
-**Release Status**: Alpha (v0.1.0)
+Veja [docs/ROADMAP_VISUAL.md](docs/ROADMAP_VISUAL.md) para o roadmap completo.
 
 ---
 
-## 📄 License
+## 📊 Status do Projeto
 
-REXA is dual-licensed under your choice of:
+REXA está em desenvolvimento ativo. Componentes principais estão funcionais, com melhorias contínuas sendo feitas.
 
-- **MIT License** ([LICENSE-MIT](LICENSE-MIT))
-- **Apache License 2.0** ([LICENSE-APACHE](LICENSE-APACHE))
+**Foco Atual**: Estabilidade, testes e documentação
 
-This means you can use REXA under the terms of either license.
-
----
-
-## 🙏 Acknowledgments
-
-REXA is built on top of excellent open-source projects:
-
-- **[Capstone](http://www.capstone-engine.org/)** - Multi-architecture disassembly framework
-- **[Goblin](https://github.com/m4b/goblin)** - Binary parsing library for Rust
-- **[egui](https://github.com/emilk/egui)** - Immediate mode GUI framework
-- **[Z3](https://github.com/Z3Prover/z3)** - SMT solver for symbolic execution
-- **Rust Community** - For creating an amazing ecosystem
-
-Special thanks to all contributors and supporters of the project.
+**Status de Release**: Alpha (v0.1.0)
 
 ---
 
-## ⚠️ Disclaimer
+## 📄 Licença
 
-REXA is designed for legitimate security research, education, and software analysis. Users are responsible for ensuring their use complies with all applicable laws and regulations. The developers assume no liability for misuse of this tool.
+REXA é licenciado sob dupla licença à sua escolha:
+
+- **Licença MIT** ([LICENSE-MIT](LICENSE-MIT))
+- **Licença Apache 2.0** ([LICENSE-APACHE](LICENSE-APACHE))
+
+Isso significa que você pode usar o REXA sob os termos de qualquer uma das licenças.
+
+---
+
+## 🙏 Agradecimentos
+
+REXA é construído sobre excelentes projetos open-source:
+
+- **[Capstone](http://www.capstone-engine.org/)** - Framework de disassembly multi-arquitetura
+- **[Goblin](https://github.com/m4b/goblin)** - Biblioteca de parsing de binários para Rust
+- **[egui](https://github.com/emilk/egui)** - Framework de GUI em modo imediato
+- **[Z3](https://github.com/Z3Prover/z3)** - Solver SMT para execução simbólica
+- **Comunidade Rust** - Por criar um ecossistema incrível
+
+Agradecimentos especiais a todos os contribuidores e apoiadores do projeto.
+
+---
+
+## ⚠️ Aviso Legal
+
+REXA é projetado para pesquisa de segurança legítima, educação e análise de software. Os usuários são responsáveis por garantir que seu uso esteja em conformidade com todas as leis e regulamentos aplicáveis. Os desenvolvedores não assumem responsabilidade pelo uso indevido desta ferramenta.
 
 ---
 
 <div align="center">
 
-**Built with ❤️ from Escanearcpl**
+**Construído com ❤️ em Rust**
 
-[GitHub](https://github.com/rexa-re/rexa) • [Documentation](https://docs.rs/rexa) • [Report Bug](https://github.com/rexa-re/rexa/issues) • [Request Feature](https://github.com/rexa-re/rexa/issues)
+[GitHub](https://github.com/rexa-re/rexa) • [Documentação](https://docs.rs/rexa) • [Reportar Bug](https://github.com/rexa-re/rexa/issues) • [Solicitar Recurso](https://github.com/rexa-re/rexa/issues)
 
-⭐ **Star us on GitHub** if you find REXA useful!
+⭐ **Dê uma estrela no GitHub** se você achar o REXA útil!
 
 </div>
