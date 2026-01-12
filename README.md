@@ -379,7 +379,7 @@ REXA é projetado para pesquisa de segurança legítima, educação e análise d
 
 <div align="center">
 
-**Construído com ❤️ em Rust**
+**Construído com ❤️ por Escanearcpl**
 
 [GitHub](https://github.com/rexa-re/rexa) • [Documentação](https://docs.rs/rexa) • [Reportar Bug](https://github.com/rexa-re/rexa/issues) • [Solicitar Recurso](https://github.com/rexa-re/rexa/issues)
 
